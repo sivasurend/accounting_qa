@@ -3,15 +3,16 @@ import streamlit as st
 import openai
 from lyzr import QABot
 
-# Set your OpenAI API key
-openai.api_key = st.secrets.openai_api_key
-os.environ['OPENAI_API_KEY'] = st.secrets.openai_api_key
-
+def init_openai(api_key):
+    openai.api_key = api_key
+    os.environ['OPENAI_API_KEY'] = st.secrets.openai_api_key
 
 st.image('./Lyzr Logo 250px by 250px.png')
 
 # Streamlit page configuration
 st.title("Accounting QA Bot with Lyzr SDK")
+
+api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
 
 # File uploader widget
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
@@ -58,17 +59,17 @@ if uploaded_file is not None:
 
     # Button to get the answer
     if st.button("Get Answer"):
-    if user_question:
-        # Ask the question to the QABot
-        answer = qa_bot.query(user_question).response
+        if user_question:
+            # Ask the question to the QABot
+            answer = qa_bot.query(user_question).response
 
-        # Get example from GPT-4
-        example = get_example(user_question, answer)
+            # Get example from GPT-4
+            example = get_example(user_question, answer)
 
-        # Combine answer and example into a single string
-        combined_response = f"**Answer:**\n{answer}\n\n**Example:**\n{example}"
+            # Combine answer and example into a single string
+            combined_response = f"**Answer:**\n{answer}\n\n**Example:**\n{example}"
 
         # Display the combined response
         st.write(combined_response)
-    else:
-        st.write("Please enter a question to get an answer.")
+        else:
+            st.write("Please enter a question to get an answer.")

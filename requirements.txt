@@ -1,0 +1,4 @@
+python==3.9
+openai==0.28.1
+streamlit
+lyzr

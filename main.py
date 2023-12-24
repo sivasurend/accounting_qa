@@ -70,6 +70,6 @@ if uploaded_file is not None:
             combined_response = f"**Answer:**\n{answer}\n\n**Example:**\n{example}"
 
         # Display the combined response
-        st.write(combined_response)
+            st.write(combined_response)
         else:
             st.write("Please enter a question to get an answer.")

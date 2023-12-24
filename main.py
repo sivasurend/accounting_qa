@@ -6,6 +6,8 @@ from lyzr import QABot
 # Set your OpenAI API key
 openai.api_key = st.secrets.openai_api_key
 
+st.image('./Lyzr Logo 250px by 250px.png')
+
 # Streamlit page configuration
 st.title("Accounting QA Bot with Lyzr SDK")
 

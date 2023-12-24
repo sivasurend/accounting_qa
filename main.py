@@ -5,6 +5,8 @@ from lyzr import QABot
 
 # Set your OpenAI API key
 openai.api_key = st.secrets.openai_api_key
+os.environ['OPENAI_API_KEY'] = st.secrets.openai_api_key
+
 
 st.image('./Lyzr Logo 250px by 250px.png')
 

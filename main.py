@@ -58,13 +58,17 @@ if uploaded_file is not None:
 
     # Button to get the answer
     if st.button("Get Answer"):
-        if user_question:
-            # Ask the question to the QABot
-            answer = qa_bot.query(user_question).response
-            st.write("Answer:", answer)
+    if user_question:
+        # Ask the question to the QABot
+        answer = qa_bot.query(user_question).response
 
-            # Get example from GPT-4
-            example = get_example(user_question, answer)
-            st.write("Example:", example)
-        else:
-            st.write("Please enter a question to get an answer.")
+        # Get example from GPT-4
+        example = get_example(user_question, answer)
+
+        # Combine answer and example into a single string
+        combined_response = f"**Answer:**\n{answer}\n\n**Example:**\n{example}"
+
+        # Display the combined response
+        st.write(combined_response)
+    else:
+        st.write("Please enter a question to get an answer.")

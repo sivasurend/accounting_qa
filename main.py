@@ -3,6 +3,8 @@ import streamlit as st
 import openai
 from lyzr import QABot
 
+api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
+
 def init_openai(api_key):
     openai.api_key = api_key
     os.environ['OPENAI_API_KEY'] = api_key
@@ -12,7 +14,6 @@ st.image('./Lyzr Logo 250px by 250px.png')
 # Streamlit page configuration
 st.title("Accounting QA Bot with Lyzr SDK")
 
-api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
 
 # File uploader widget
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
